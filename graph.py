@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 root = Tk()
+root.title('Paint')
 
 import random
 
@@ -40,6 +41,7 @@ def addLine(event):
 
 def krug(event):
     new_window = Tk()
+    new_window.title('Параметры Круга')
     text1 = Label(new_window, text = 'Радиус', width = 10, height = 1, fg = 'black', font = 'arial 10')
     text1.grid(row = 0, column = 0, sticky ='nw' )
     scale_w = Scale(new_window, orient = HORIZONTAL, length = 500, from_ = 0, to = 1000, tickinterval = 100, resolution = 1)
@@ -70,6 +72,7 @@ def krug(event):
 
 def kvadrat(event):
     new_window = Tk()
+    new_window.title('Параметры четырехугольника')
     text2 = Label(new_window, text = 'угловыe точки', width = 20, height = 1, fg = 'black', font = 'arial 10')
     text2.grid(row = 0, column = 5, sticky ='nw' )
     text2 = Label(new_window, text = 'верхняя левая', width = 20, height = 1, fg = 'black', font = 'arial 10')
@@ -127,14 +130,20 @@ id = canvas.create_rectangle((10, 85, 20, 105), fill="grey", tags=('palette', 'p
 line = canvas.tag_bind(id, "<Button-1>", lambda x: setColor("grey"))
 id = canvas.create_rectangle((10, 60, 20, 80), fill="black", tags=('palette', 'paletteblack', 'paletteSelected'))
 line = canvas.tag_bind(id, "<Button-1>",lambda x: setColor("black"))
-id = canvas.create_oval((10,110,30,130), fill = "white", tags=('palette', 'palettepink'))
+id = canvas.create_rectangle((10,110,20,130), fill="yellow", tags=('palette', 'paletteyellow'))
+line = canvas.tag_bind(id, "<Button-1>", lambda x: setColor("yellow"))
+id = canvas.create_rectangle((10,135,20,155), fill="brown", tags=('palette', 'palettebrown'))
+line = canvas.tag_bind(id, "<Button-1>", lambda x: setColor("brown"))
+id = canvas.create_rectangle((10,160,20,180), fill="green", tags=('palette', 'palettegreen'))
+line = canvas.tag_bind(id, "<Button-1>", lambda x: setColor("green"))
+id = canvas.create_oval((10,185,30,205), fill = "white", tags=('palette', 'palettepink'))
 canvas.tag_bind(id, "<Double-Button-1>", krug)
-id = canvas.create_rectangle((10,135,30,155), fill = "white", tags=('palette', 'palettepink'))
+id = canvas.create_rectangle((10,210,30,220), fill = "white", tags=('palette', 'palettepink'))
 canvas.tag_bind(id, "<Double-Button-1>", kvadrat)
 def clearCanvas(event):
     canvas.delete("rect")
     canvas.delete("tag_bind")
-    canvas.delete(line)
+    
     
 canvas.bind("<Button-3>", clearCanvas)
 
