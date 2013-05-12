@@ -17,7 +17,6 @@ h.grid(column=0, row=1, sticky=(W,E))
 v.grid(column=1, row=0, sticky=(N,S))
 root.grid_columnconfigure(0, weight=1)
 root.grid_rowconfigure(0, weight=1)
-
 lastx, lasty = 0, 0
 
 def xy(event):
@@ -140,13 +139,15 @@ id = canvas.create_oval((10,185,30,205), fill = "white", tags=('palette', 'palet
 canvas.tag_bind(id, "<Double-Button-1>", krug)
 id = canvas.create_rectangle((10,210,30,220), fill = "white", tags=('palette', 'palettepink'))
 canvas.tag_bind(id, "<Double-Button-1>", kvadrat)
-def clearCanvas(event):
+def clearSq(event):
     canvas.delete("rect")
-    canvas.delete("tag_bind")
+def clearOv(event):
+    canvas.delete("oval")
     
     
-canvas.bind("<Button-3>", clearCanvas)
-
+    
+canvas.bind("<Button-3>", clearSq)
+canvas.bind("<Button-3>", clearOv)
 
 setColor('black')
 canvas.itemconfigure('palette', width=5)
